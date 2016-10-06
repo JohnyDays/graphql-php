@@ -457,7 +457,7 @@ class Executor
     private static function resolveOrError($resolveFn, $source, $args, $context, $info)
     {
         try {
-            return call_user_func($resolveFn, $source, $args, $context, $info);
+            return $resolveFn($source, $args, $context, $info);
         } catch (\Exception $error) {
             return $error;
         }
