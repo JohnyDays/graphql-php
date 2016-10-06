@@ -435,7 +435,7 @@ class Executor
         // The resolve function's optional third argument is a context value that
         // is provided to every resolve function within an execution. It is commonly
         // used to represent an authenticated user, or request-specific caches.
-        $context = $exeContext->contextValue;
+        $context = &$exeContext->contextValue;
 
         // Get the resolve function, regardless of if its result is normal
         // or abrupt (error).
@@ -454,7 +454,7 @@ class Executor
 
     // Isolates the "ReturnOrAbrupt" behavior to not de-opt the `resolveField`
     // function. Returns the result of resolveFn or the abrupt-return Error object.
-    private static function resolveOrError($resolveFn, $source, $args, $context, $info)
+    private static function resolveOrError($resolveFn, $source, $args, &$context, $info)
     {
         try {
             return $resolveFn($source, $args, $context, $info);
